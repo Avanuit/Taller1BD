@@ -6,11 +6,11 @@ function fetchProducts() {
         setTimeout(() => {
             try {
                 const products = [
-                    { id: 101, name: "mAcBook PrO", price: 2500, inStock: true },
-                    { id: 102, name: "iPhOnE 15", price: 1200, inStock: false },
-                    { id: 103, name: "AiRpOds mAx", price: 500, inStock: true },
-                    { id: 104, name: "iPaD AiR", price: 800, inStock: true },
-                    { id: 105, name: "ApPle WaTcH", price: 400, inStock: false }
+                    { id: 101, name: "mAcBook PrO", price: 2500, inStock: true, image: "src/macbook.png" },
+                    { id: 102, name: "iPhOnE 15", price: 1200, inStock: false, image: "src/iphone.png" },
+                    { id: 103, name: "AiRpOds mAx", price: 500, inStock: true, image: "src/airpods.png" },
+                    { id: 104, name: "iPaD AiR", price: 800, inStock: true, image: "src/ipad.png" },
+                    { id: 105, name: "ApPle WaTcH", price: 400, inStock: false, image: "src/watch.png" }
                 ];
                 resolve(products);
             } catch (error) {
@@ -31,14 +31,19 @@ function normalizeProducts(rawProducts) {
         id: product.id,
         name: formatProductName(product.name),
         price: product.price * 1.15,
-        inStock: product.inStock
+        inStock: product.inStock,
+        image: product.image
     }));
 }
-
 //inventory
 function createProductElement(product) {
     const card = document.createElement('div');
     card.className = product.inStock ? 'product-card' : 'product-card out-of-stock';
+
+    const image = document.createElement('img');
+    image.src = product.image;
+    image.alt = product.name;
+    image.className = 'product-image';
 
     const title = document.createElement('h3');
     title.textContent = product.name;
@@ -56,6 +61,7 @@ function createProductElement(product) {
     
     buyButton.onclick = () => handleAddToCart(product.id, card, status, buyButton);
 
+    card.appendChild(image);
     card.appendChild(title);
     card.appendChild(status);
     card.appendChild(price);
@@ -148,11 +154,9 @@ function renderCart() {
         const priceSpan = document.createElement('span');
         priceSpan.textContent = `$${item.price.toFixed(2)}`;
         
-        //delete items from cart
-
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
-        removeBtn.style.backgroundColor = '#ff3b30';
+        removeBtn.style.backgroundColor = '#ff3b30'; 
         removeBtn.style.width = 'auto';
         removeBtn.style.margin = '0';
         removeBtn.style.padding = '4px 8px';
