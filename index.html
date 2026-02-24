@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller #1 BD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>iShop</h1>
+    </header>
+    
+    <div class="layout">
+        <div class="inventory-section">
+            <h2>Latest Products</h2>
+            <div id="inventory-container"></div>
+        </div>
+
+        <div class="cart-section">
+            <h2>Your Bag</h2>
+            <ul id="cart-items">
+                <li class="empty-msg">Your bag is empty.</li>
+            </ul>
+            <div class="cart-total">
+                <span>Total</span>
+                <span>$<span id="cart-total-price">0.00</span></span>
+            </div>
+            <button id="checkout-btn">Check Out</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
